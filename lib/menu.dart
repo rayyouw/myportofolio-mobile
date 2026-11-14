@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
+/// Data model for one action button on the home page.
 class ItemHomepage {
+  /// Label shown on the card and in the SnackBar message.
   final String name;
+
+  /// Icon displayed above the label.
   final IconData icon;
+
+  /// Background color of the card.
   final Color color;
 
   ItemHomepage(this.name, this.icon, this.color);
 }
 
+/// Main page of the app: owner info cards and the portfolio action grid.
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
@@ -87,8 +94,8 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+/// Card displaying a [title] and its associated [content].
 class InfoCard extends StatelessWidget {
-  // Information card displaying a title and its associated content.
   final String title;
   final String content;
 
@@ -116,6 +123,7 @@ class InfoCard extends StatelessWidget {
   }
 }
 
+/// Tappable colored card for an [ItemHomepage]; shows a SnackBar when pressed.
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
 
