@@ -17,4 +17,15 @@ void main() {
 
     expect(find.text('You pressed the View Projects button!'), findsOneWidget);
   });
+
+  testWidgets('Add Project card opens the project form', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MyApp());
+
+    await tester.tap(find.text('Add Project'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Add Project Form'), findsOneWidget);
+  });
 }
