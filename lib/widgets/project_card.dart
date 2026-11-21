@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myportofolio_mobile/screens/education_form.dart';
+import 'package:myportofolio_mobile/screens/education_list.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
 
@@ -29,10 +31,16 @@ class ItemCard extends StatelessWidget {
             );
 
           // Navigate to the appropriate screen.
-          if (item.name == "Add Project") {
+          final Widget? destination = switch (item.name) {
+            'Add Project' => const ProjectFormPage(),
+            'Add Education' => const EducationFormPage(),
+            'View Education' => const EducationListPage(),
+            _ => null,
+          };
+          if (destination != null) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ProjectFormPage()),
+              MaterialPageRoute(builder: (context) => destination),
             );
           }
         },

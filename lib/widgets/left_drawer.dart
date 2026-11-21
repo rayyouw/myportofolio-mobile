@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myportofolio_mobile/screens/education_form.dart';
+import 'package:myportofolio_mobile/screens/education_list.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
 
@@ -16,17 +18,22 @@ class LeftDrawer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'My Portfolio',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'My Portfolio',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 SizedBox(height: 10),
                 Text(
                   'Explore personal projects and experiences!',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 15, color: Colors.white),
                 ),
               ],
@@ -52,6 +59,30 @@ class LeftDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ProjectFormPage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.school_outlined),
+            title: const Text('Add Education'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EducationFormPage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.list_alt),
+            title: const Text('View Education'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EducationListPage(),
                 ),
               );
             },
