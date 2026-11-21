@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/screens/education_form.dart';
 import 'package:myportofolio_mobile/state/education_store.dart';
+import 'package:myportofolio_mobile/widgets/education_card.dart';
 import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 
 /// Screen listing every education entry saved through the form.
@@ -49,25 +50,9 @@ class EducationListPage extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (context, index) {
               final item = items[index];
-              return Card(
-                child: ListTile(
-                  leading: const CircleAvatar(
-                    backgroundColor: Colors.purple,
-                    foregroundColor: Colors.white,
-                    child: Icon(Icons.school),
-                  ),
-                  title: Text(item.institution),
-                  subtitle: Text(
-                    '${item.level} - ${item.major}\n${item.period}'
-                    '${item.gpa == null ? '' : '\nGPA ${item.gpa!.toStringAsFixed(2)}'}',
-                  ),
-                  isThreeLine: true,
-                  trailing: IconButton(
-                    tooltip: 'Delete',
-                    icon: const Icon(Icons.delete_outline),
-                    onPressed: () => educationStore.removeAt(index),
-                  ),
-                ),
+              return EducationCard(
+                education: item,
+                onDelete: () => educationStore.removeAt(index),
               );
             },
           );

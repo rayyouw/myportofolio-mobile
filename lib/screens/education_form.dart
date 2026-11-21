@@ -5,6 +5,7 @@ import 'package:myportofolio_mobile/screens/education_list.dart';
 import 'package:myportofolio_mobile/state/education_store.dart';
 import 'package:myportofolio_mobile/utils/validators.dart';
 import 'package:myportofolio_mobile/widgets/date_field.dart';
+import 'package:myportofolio_mobile/widgets/education_card.dart';
 import 'package:myportofolio_mobile/widgets/form_text_field.dart';
 import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 
@@ -322,6 +323,34 @@ class _EducationFormPageState extends State<EducationFormPage> {
                       ),
                     ],
                   ),
+                ),
+                // === Saved entries ===
+                ListenableBuilder(
+                  listenable: educationStore,
+                  builder: (context, _) {
+                    final items = educationStore.items;
+                    if (items.isEmpty) return const SizedBox.shrink();
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text(
+                              'Saved Education (${items.length})',
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ),
+                          for (var i = 0; i < items.length; i++)
+                            EducationCard(
+                              education: items[i],
+                              onDelete: () => educationStore.removeAt(i),
+                            ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

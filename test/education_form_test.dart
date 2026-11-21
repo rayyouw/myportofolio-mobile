@@ -93,7 +93,18 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(AlertDialog), findsNothing);
-    expect(find.text('Universitas Indonesia'), findsNothing);
+    // The form is cleared, and the saved entry is listed below it.
+    expect(find.text('Saved Education (1)'), findsOneWidget);
+    expect(find.text('Universitas Indonesia'), findsOneWidget);
+    expect(
+      tester
+          .widget<TextFormField>(
+            find.widgetWithText(TextFormField, 'Institution'),
+          )
+          .controller!
+          .text,
+      isEmpty,
+    );
   });
 
   testWidgets('"Still studying here" removes the end date requirement', (
@@ -114,7 +125,13 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Education added successfully!'), findsOneWidget);
-    expect(find.textContaining('Present'), findsOneWidget);
+    expect(
+      find.descendant(
+        of: find.byType(AlertDialog),
+        matching: find.textContaining('Present'),
+      ),
+      findsOneWidget,
+    );
     expect(educationStore.items.single.isOngoing, isTrue);
   });
 
