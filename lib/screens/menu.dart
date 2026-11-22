@@ -28,6 +28,7 @@ class MyHomePage extends StatelessWidget {
     ItemHomepage("View Projects", Icons.folder, Colors.blue),
     ItemHomepage("Add Project", Icons.add_circle, Colors.green),
     ItemHomepage("View Skills", Icons.psychology, Colors.orange),
+    ItemHomepage("Add Skill", Icons.library_add, Colors.deepOrange),
     ItemHomepage("View Education", Icons.school, Colors.purple),
     ItemHomepage("Add Education", Icons.note_add, Colors.teal),
     ItemHomepage("Logout", Icons.logout, Colors.red),

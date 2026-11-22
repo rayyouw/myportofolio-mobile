@@ -3,6 +3,8 @@ import 'package:myportofolio_mobile/screens/education_form.dart';
 import 'package:myportofolio_mobile/screens/education_list.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
+import 'package:myportofolio_mobile/screens/skill_form.dart';
+import 'package:myportofolio_mobile/screens/skill_list.dart';
 
 /// Tappable colored card for an [ItemHomepage]; shows a SnackBar and
 /// navigates to the matching screen when pressed.
@@ -35,6 +37,8 @@ class ItemCard extends StatelessWidget {
             'Add Project' => const ProjectFormPage(),
             'Add Education' => const EducationFormPage(),
             'View Education' => const EducationListPage(),
+            'Add Skill' => const SkillFormPage(),
+            'View Skills' => const SkillListPage(),
             _ => null,
           };
           if (destination != null) {
