@@ -184,4 +184,29 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Welcome to MyPortfolio Mobile!'), findsOneWidget);
   });
+
+  testWidgets(
+    'on a phone-sized screen with the keyboard open, Save is reachable',
+    (tester) async {
+      tester.view.physicalSize = const Size(360, 640);
+      tester.view.devicePixelRatio = 1.0;
+      // Simulates the on-screen keyboard covering the bottom of the screen.
+      tester.view.viewInsets = const FakeViewPadding(bottom: 280);
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      addTearDown(tester.view.resetViewInsets);
+      await tester.pumpWidget(const MaterialApp(home: EducationFormPage()));
+
+      await tester.scrollUntilVisible(
+        find.text('Save'),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.tap(find.text('Save'));
+      await tester.pump();
+
+      expect(find.text('Institution is required.'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 }
