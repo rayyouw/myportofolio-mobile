@@ -5,6 +5,8 @@ import 'package:myportofolio_mobile/screens/education_form.dart';
 import 'package:myportofolio_mobile/state/education_store.dart';
 import 'package:myportofolio_mobile/widgets/date_field.dart';
 
+import 'helpers/fake_api.dart';
+
 /// Pumps the form on a tall surface so every field is on screen.
 Future<void> pumpForm(WidgetTester tester) async {
   tester.view.physicalSize = const Size(800, 2400);
@@ -161,7 +163,7 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(apiClient: fakeApiClient()));
 
     // Action card -> form (push), system back -> home.
     await tester.tap(find.text('Add Education'));

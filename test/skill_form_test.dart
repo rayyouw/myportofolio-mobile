@@ -4,6 +4,8 @@ import 'package:myportofolio_mobile/main.dart';
 import 'package:myportofolio_mobile/screens/skill_form.dart';
 import 'package:myportofolio_mobile/state/skill_store.dart';
 
+import 'helpers/fake_api.dart';
+
 Future<void> useTallScreen(WidgetTester tester) async {
   tester.view.physicalSize = const Size(800, 2400);
   tester.view.devicePixelRatio = 1.0;
@@ -72,7 +74,7 @@ void main() {
     tester,
   ) async {
     await useTallScreen(tester);
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(apiClient: fakeApiClient()));
     await tester.tap(find.text('Add Skill'));
     await tester.pumpAndSettle();
 
@@ -97,7 +99,7 @@ void main() {
     tester,
   ) async {
     await useTallScreen(tester);
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(apiClient: fakeApiClient()));
 
     await tester.tap(find.text('View Skills'));
     await tester.pumpAndSettle();
